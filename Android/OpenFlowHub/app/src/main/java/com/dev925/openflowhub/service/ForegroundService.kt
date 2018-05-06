@@ -1,4 +1,4 @@
-package com.dev925.openflowhub.websocket
+package com.dev925.openflowhub.service
 
 import android.app.Service
 import android.content.Intent
@@ -17,7 +17,7 @@ class ForegroundService : Service() {
     }
 
     override fun onCreate() {
-        GenericEventBus.instance.send("Hello")
+        GenericEventBus.instance.send("Robert's Test App")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {

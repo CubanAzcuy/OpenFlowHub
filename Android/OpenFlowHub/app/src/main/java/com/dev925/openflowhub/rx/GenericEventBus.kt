@@ -1,6 +1,6 @@
 package com.dev925.openflowhub.rx
 
-import com.jakewharton.rxrelay2.PublishRelay
+import com.jakewharton.rxrelay2.ReplayRelay
 import io.reactivex.Observable
 
 /**
@@ -8,14 +8,14 @@ import io.reactivex.Observable
  */
 
 class GenericEventBus {
-    private val bus = PublishRelay.create<Any>().toSerialized()
+    private val bus = ReplayRelay.create<Any>().toSerialized()
     val observable: Observable<Any>
-        @Synchronized  get() {
+        @Synchronized get() {
             return bus
         }
 
-    fun toObservable(): Observable<Any> {
-        return bus
+    @Synchronized fun send(o: Any) {
+        bus.accept(o)
     }
 
     companion object {
