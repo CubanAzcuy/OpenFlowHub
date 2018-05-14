@@ -13,21 +13,18 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var job1: Job
-    lateinit var random: Random
+    private lateinit var job1: Job
+    private lateinit var random: Random
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
 
         random = Random()
-        async(CommonPool) {
-            sendMessage("hello")
-        }
 
     }
 
-    suspend fun sendMessage(text: String) {
+    private fun sendMessage(text: String) {
         var intent = Intent(this, ForegroundService::class.java)
         intent.putExtra("Message", text)
         startService(intent)
@@ -36,6 +33,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         var count = 0
+        async(CommonPool) {
+            sendMessage("hello")
+        }
 
         job1 = async(CommonPool) {
             for(x in UniversalProducer.producer) {

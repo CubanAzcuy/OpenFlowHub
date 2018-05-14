@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.dev925.openflowhub.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_secondaryFragment"
+            app:destination="@id/secondaryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondaryFragment"
+        android:name="com.dev925.openflowhub.ui.secondary.SecondaryFragment"
+        android:label="SecondaryFragment" ><action android:id="@+id/action_secondaryFragment_pop_including_mainFragment" app:popUpTo="@id/mainFragment" app:popUpToInclusive="true"/></fragment>
+</navigation>
